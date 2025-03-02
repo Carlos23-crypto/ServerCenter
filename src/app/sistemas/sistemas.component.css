@@ -1,0 +1,113 @@
+/* Contenedor principal */
+.almacen-container {
+    display: flex;
+    flex-direction: column; /* Organiza los elementos en columna */
+    height: 100vh; /* Ocupa toda la altura de la pantalla */
+  }
+  
+  /* Barra superior */
+  .top-bar {
+    height: 10.8%; /* 10% del alto de la página */
+    background-color: #2c3e50; /* Color de fondo */
+    display: flex;
+    justify-content: space-between; /* Separa el título y los enlaces */
+    align-items: center; /* Centra verticalmente */
+    padding: 0 20px; /* Espaciado horizontal */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra */
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+  
+  /* Título de la barra superior */
+  .top-bar-title h1 {
+    color: #fff; /* Color del texto */
+    margin: 0; /* Elimina el margen por defecto */
+    font-size: 1.5em;
+  }
+  
+  /* Enlaces de la barra superior */
+  .top-bar-links a {
+    color: #fff; /* Color del texto */
+    text-decoration: none; /* Quita el subrayado */
+    margin-left: 20px; /* Espacio entre enlaces */
+    font-size: 1em;
+    transition: color 0.3s ease; /* Transición suave */
+  }
+  
+  .top-bar-links a:hover {
+    color:  rgb(8, 6, 117); /* Cambia el color al pasar el mouse */
+  }
+  
+  /* Contenedor del menú lateral y contenido principal */
+  .main-content {
+    display: flex;
+    flex: 1; /* Ocupa el espacio restante */ 
+    padding-top: 2.7%; /* Baja todo el contenido para que no se solape */
+  }
+  
+  /* Menú lateral */
+  .sidebar {
+    width: 160px; /* Ancho del menú lateral */
+    background-color: #2c3e50; /* Color de fondo */
+    display: flex;
+    flex-direction: column; /* Organiza los elementos en columna */
+    top: 0;
+     
+  }
+  
+  /* Cabecera del menú */
+  .sidebar-header {
+    padding: 20px;
+    background-color: #34495e; /* Color de fondo de la cabecera */
+    text-align: center;
+  }
+  
+  /* Imagen del menú */
+  .sidebar-image {
+    width: 100px; /* Tamaño de la imagen */
+    border-radius: 10px; /* Bordes redondeados */
+    margin-bottom: 10px; /* Espacio debajo de la imagen */
+  }
+  
+  /* Título del menú */
+  .sidebar-title {
+    color: #ffffff; /* Color del texto */
+    margin: 0; /* Elimina el margen por defecto */
+    font-size: 1.5em;
+  }
+  
+  /* Opciones del menú */
+  .sidebar-menu {
+    list-style: none; /* Quita los puntos de la lista */
+    padding: 0;
+    margin: 0;
+    flex: 1; /* Ocupa el espacio restante */
+    padding: 20px;
+    color:  rgb(8, 6, 117);
+  }
+  
+  .sidebar-menu li {
+    margin-bottom: 10px; /* Espacio entre opciones */
+  }
+  
+  .sidebar-menu li a {
+    color: #ffffff; /* Color del texto */
+    text-decoration: none; /* Quita el subrayado */
+    display: block;
+    padding: 10px;
+    border-radius: 5px; /* Bordes redondeados */
+    transition: background-color 0.3s ease; /* Transición suave */
+  }
+  
+  .sidebar-menu li a:hover {
+    background-color: #1cff3a; /* Color de fondo al pasar el mouse */
+  }
+  
+  /* Contenido principal */
+  .content {
+    flex: 1; /* Ocupa el espacio restante */
+    padding: 20px;
+  /* background-color: #f4f4f4;  Color de fondo */
+  }

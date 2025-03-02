@@ -1,0 +1,63 @@
+<div class="almacen-container">
+  <!-- Barra superior -->
+  <header class="top-bar">
+    <!-- Título en la parte izquierda -->
+    <div class="top-bar-title">
+      <h1>Almacén</h1>
+    </div>
+
+    <!-- Enlaces en la parte derecha -->
+    <nav class="top-bar-links">
+      <a href="/registro-producto">Registrar Nuevos Productos</a>
+      <!--<a href="/catalogo">Ver Catalogo</a>-->
+      <a href="../login/login.component.html">Salir</a>
+    </nav>
+  </header>
+
+  <!-- Menú lateral y contenido principal -->
+  <div class="main-content">
+    <!-- Menú lateral -->
+    <div class="sidebar">
+      <!-- Cabecera del menú -->
+      <header class="sidebar-header">
+        <!-- Imagen -->
+        <img
+          src="../../assets/imagenes/Fondos/ServerLogo.jfif"
+          alt="Logo"
+          class="sidebar-image"
+        />
+        <!-- Título -->
+        <h2 class="sidebar-title">Menú Almacén</h2>
+      </header>
+
+      <!-- Opciones del menú -->
+      <ul class="sidebar-menu">
+        <div class="text-center">
+          <!-- Enlace Inicio: redirige a la misma página de almacén -->
+          <li class="bi bi-house" style="font-size: 2rem;">
+            <a href="/almacen" style="font-size: 1rem;">Inicio</a>
+          </li>
+          <!-- Enlace Registrar Ventas: redirige a la página de almacén -->
+          <li class="bi bi-bag-check-fill" style="font-size: 2rem;">
+            <a href="/ventas" style="font-size: 1rem;">Registrar Ventas</a>
+          </li>
+          <!-- Enlace Registrar Embarques: redirige a la página de almacén -->
+          <li class="bi bi-file-post" style="font-size: 2rem;">
+            <a href="/embarque" style="font-size: 1rem;">Registrar Embarques</a>
+          </li>
+        </div>
+      </ul>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="content">
+      <h1>Disponibilidad de Stock</h1>
+      <p>Seleccione el contenedor para ver el Stock disponible</p>
+      <div class="lista_contenedor">
+        <button *ngFor="let dato of datos; let indice=index" class="lista" (click)="redirect(dato.nombre)">
+          <img [src]="dato.imagen" alt="Imagen Producto" />
+          <p>{{ dato.nombre }}</p>
+        </button>
+    </div>
+  </div>
+</div>

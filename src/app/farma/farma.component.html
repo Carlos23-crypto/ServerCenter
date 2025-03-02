@@ -1,0 +1,40 @@
+<div class="container">
+    <h2>Lista de Servidores</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Número de Parte</th>
+          <th>Marca</th>
+          <th>Socket</th>
+          <th>RAM</th>
+          <th>Modelo</th>
+          <th>Tipo de Disco</th>
+          <th>Marca Procesador</th>
+          <th>Modelo Procesador</th>
+          <th>Línea Procesador</th>
+          <th>Categoria</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Iterar sobre la lista de servidores -->
+        <tr *ngFor="let servidor of servidores">
+          <td>{{ servidor.id }}</td>
+          <td>{{ servidor.nombre }}</td>
+          <td>{{ servidor.numParte }}</td>
+          <td>{{ servidor.marca }}</td>
+          <td>{{ servidor.socket }}</td>
+          <td>{{ servidor.ram }}</td>
+          <td>{{ servidor.modelo }}</td>
+          <td>{{ servidor.tDisco }}</td>
+          <td>{{ servidor.marcaProce }}</td>
+          <td>{{ servidor.modelProce }}</td>
+          <td>{{ servidor.linProce }}</td>
+          <td>{{ servidor.categoria }}</td>
+          <td>{{ servidor.total }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

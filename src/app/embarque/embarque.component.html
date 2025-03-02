@@ -1,0 +1,97 @@
+<div class="embarque-container">
+    <!-- Encabezado -->
+    <header class="embarque-header">
+      <!-- Título en la parte izquierda -->
+      <div class="header-container">
+        <img
+        id="Logo"
+        src="../../assets/imagenes/Fondos/ServerLogo.jfif"
+        alt="Logo"
+        />
+        <h1 class="embarque-title">Registro de Embarques</h1>
+      </div>
+  
+      <!-- Menú en la parte derecha -->
+      <nav class="producto-menu">
+        <button (click)="regresar()">Regresar</button>
+      </nav>
+    </header>
+  
+    <!-- Contenido principal -->
+    <div class="embarque-content">
+      <!-- Botón para registrar embarques -->
+      <button class="registrar-button" (click)="abrirModal()">Registrar Embarque</button>
+  
+      <!-- Buscador -->
+      <div class="buscador">
+        <select [(ngModel)]="tipoBusqueda">
+          <option value="producto">Producto</option>
+          <option value="fecha">Fecha</option>
+        </select>
+        <input type="text" [(ngModel)]="valorBusqueda" placeholder="Buscar..." />
+        <button (click)="buscar()">Buscar</button>
+      </div>
+  
+      <!-- Tabla de embarques -->
+      <table id="tablaEmbarques" *ngIf="embarques.length > 0" class="embarque-table">
+        <thead>
+            <tr>
+              <th>ID</th>
+              <th>Producto</th>
+              <th>Marca</th>
+              <th>Número de Parte</th>
+              <th>Estado</th>
+              <th>Cantidad</th>
+              <th>Fecha</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let embarque of embarquesFiltrados">
+              <td>{{ embarque.id }}</td>
+              <td>{{ embarque.producto }}</td>
+              <td>{{ embarque.marca }}</td>
+              <td>{{ embarque.numeroParte }}</td>
+              <td>{{ embarque.estado }}</td>
+              <td>{{ embarque.cantidad }}</td>
+              <td>{{ embarque.fecha }}</td>
+            </tr>
+          </tbody>
+      </table>      
+  
+      <!-- Botón para exportar a PDF -->
+      <button class="exportar-button" (click)="exportarPDF()">Exportar a PDF</button>
+
+    </div>
+    
+    <!-- Modal para registrar embarques -->
+    <div class="modal" *ngIf="mostrarModal">
+        <div class="modal-content">
+          <h2>Registrar Embarque</h2>
+          <form (ngSubmit)="registrarEmbarque()">
+            
+            <label for="producto">Producto:</label>
+            <input type="text" id="producto" [(ngModel)]="nuevoEmbarque.producto" name="producto" required />
+      
+            <label for="marca">Marca:</label>
+            <input type="text" id="marca" [(ngModel)]="nuevoEmbarque.marca" name="marca" required />
+      
+            <label for="numeroParte">Número de Parte:</label>
+            <input type="text" id="numeroParte" [(ngModel)]="nuevoEmbarque.numeroParte" name="numeroParte" required />
+      
+            <label for="estado">Estado:</label>
+            <select id="estado" [(ngModel)]="nuevoEmbarque.estado" name="estado" required>
+              <option value="Bueno">Bueno</option>
+              <option value="Malo">Malo</option>
+              <option value="Medio">Medio</option>
+            </select>
+      
+            <label for="cantidad">Cantidad:</label>
+            <input type="number" id="cantidad" [(ngModel)]="nuevoEmbarque.cantidad" name="cantidad" required />
+      
+            <button type="submit">Registrar</button>
+            <button type="button" (click)="cerrarModal()">Cancelar</button>
+          </form>
+        </div>
+      </div>
+      
+  </div>

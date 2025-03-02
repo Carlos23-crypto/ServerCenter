@@ -1,0 +1,55 @@
+<div class="login-container">
+  <div class="login-left">
+    <!-- Imagen en la parte izquierda -->
+    <img src="../../assets/imagenes/Fondos/ServerOriginal.jpg" alt="Imagen de fondo" class="login-image" />
+  </div>
+  <div class="login-right">
+    <form (ngSubmit)="onSubmit()">
+      <h2>Iniciar Sesión</h2>
+
+      <!-- Campo para el nombre de usuario -->
+      <div class="form-group">
+        <label for="nombreUsuario">Nombre de usuario</label>
+        <input
+          type="text"
+          id="nombreUsuario"
+          name="nombreUsuario"
+          [(ngModel)]="nombreUsuario"
+          required
+          placeholder="Introduce tu nombre de usuario"
+          class="form-input"
+        />
+      </div>
+
+      <!-- Campo para la contraseña -->
+      <div class="form-group">
+        <label for="contrasena">Contraseña</label>
+        <input
+          type="password"
+          id="contrasena"
+          name="contrasena"
+          [(ngModel)]="contrasena"
+          required
+          placeholder="Introduce tu contraseña"
+          class="form-input"
+        />
+      </div>
+
+      <!-- Botones -->
+      <div class="button-group">
+        <button type="submit" class="btn btn-primary">Ingresar</button>
+        <button type="button" class="btn btn-secondary" (click)="limpiarCampos()">Limpiar</button>
+      </div>
+
+      <!-- Mensaje de error -->
+      <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+
+      <!-- Enlace al catálogo (opcional) -->
+      <nav>
+        <ul class="nav-links">
+          <li><a href="/catalogo">Ir a catálogo</a></li>
+        </ul>
+      </nav>
+    </form>
+  </div>
+</div>

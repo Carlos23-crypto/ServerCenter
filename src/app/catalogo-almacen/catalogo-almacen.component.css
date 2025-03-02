@@ -1,0 +1,190 @@
+.embarque-container {
+    font-family: Arial, sans-serif;
+    padding-top: 80px; /* Espacio para el encabezado fijo */
+  }
+
+/* Encabezado */
+.embarque-header {
+    position: fixed; /* Fija el encabezado en la parte superior */
+    top: 0;
+    left: 0;
+    width: 100%; /* Ocupa todo el ancho de la página */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2c3e50;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
+    z-index: 1000; /* Asegura que el encabezado esté por encima del contenido */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra para un efecto elevado */
+  }
+  .header-container {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espacio entre la imagen y el título */
+  }
+  
+  .header-container img {
+    width: 150px; /* Ajusta el tamaño de la imagen */
+    height: 150px;
+    border-radius: 50%;
+  }
+  
+  .header-container h1 {
+    margin: 0;
+    font-size: 24px;
+    color: #ccc;
+  }
+  
+  
+  .embarque-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .embarque-menu button {
+    margin-left: 10px;
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .embarque-menu button:hover {
+    background-color: #0056b3;
+  }
+/*Vista de tablas*/
+.title{
+    text-align: center;
+    margin-top: 180px;
+  }
+  
+  .tabla-container {
+    margin: 20px auto 20px; /* Margen superior para evitar superposición con el encabezado */
+    width: 80%;
+    overflow-x: auto;
+    }
+  
+  .regreso{
+      width: 10%;
+      padding: 10px;
+  }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    thead {
+      background-color: #f4f4f4;
+    }
+    
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    
+    th {
+      background-color: #007bff;
+      color: white;
+      font-weight: bold;
+    }
+    
+    tr { 
+      /*:nth-child(even)*/
+      background-color: #f9f9f9;
+    }
+    
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: rgb(8, 6, 117);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    
+    button:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+    
+    button:hover:not(:disabled) {
+      background-color: #1cff3a;
+      text-decoration-color: black;
+    }
+  
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    
+    .modal-content {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      width: 600px;
+      display: flex;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+    
+    .modal-left {
+      flex: 1; /* Ocupa la mitad del espacio */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .modal-left img {
+      max-width: 100%; /* La imagen se ajusta al contenedor */
+      max-height: 200px;
+      border-radius: 8px;
+    }
+    
+    .modal-right {
+      flex: 2; /* Ocupa el doble del espacio que la izquierda */
+      padding-left: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    .modal-right h2 {
+      margin-bottom: 20px;
+    }
+    
+    .modal-right p {
+      margin: 5px 0;
+    }
+    
+    .producto-menu button {
+        padding: 8px 16px;
+        background-color: #34495e;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    
+    .producto-menu button:hover {
+      background-color: #1a252f;
+    }

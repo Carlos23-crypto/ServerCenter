@@ -1,0 +1,94 @@
+<a href="/catalogo"><button class="regreso">Regresar</button></a>
+<h1 class="title">{{ categoria }}</h1>
+<div class="tabla-container">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre del Componente</th>
+          <th>N° de Parte</th>
+          <th>Marca</th>
+          <th>Total Disponibles</th>
+          <th>Mas Detalles</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let dato of  datosFiltrados; let indice=index">
+          <td>{{ indice + 1 }}</td>
+          <td>{{ dato.nombre }}</td>
+          <td>{{ dato.n_parte }}</td>
+          <td>{{ dato.marca }}</td>
+          <td>{{ dato.total }}</td>
+          <td><button type="button"  (click)="abrirModal(dato)">Ver</button></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+   <!-- Modal Servidores-->
+  <div *ngIf="modalAbierto" class="modal">
+    <div class="modal-content">
+      <div class="modal-left">
+        <img [src]="datoSeleccionado?.imagen" alt="Imagen del producto" />
+      </div>
+      <div class="modal-right">
+        <h2>Detalles del Producto</h2>
+        <p><strong>Nombre:</strong> {{ datoSeleccionado?.nombre }}</p>
+        <p><strong>Número de Parte:</strong> {{ datoSeleccionado?.n_parte }}</p>
+        <p><strong>Marca:</strong> {{ datoSeleccionado?.marca }}</p>
+        <p><strong>Total:</strong> {{ datoSeleccionado?.total }}</p> 
+  
+         <!--Mostrar solo si existe el campo -->
+        <p *ngIf="datoSeleccionado?.socket"><strong>Socket:</strong> {{ datoSeleccionado?.socket }}</p>
+        <p *ngIf="datoSeleccionado?.ram"><strong>Memoria Ram:</strong> {{ datoSeleccionado?.ram }}</p>
+        <p *ngIf="datoSeleccionado?.modelo"><strong>Modelo:</strong> {{ datoSeleccionado?.modelo }}</p>
+        <p *ngIf="datoSeleccionado?.TDisco"><strong>Disco:</strong> {{ datoSeleccionado?.TDisco }}</p>
+        <p *ngIf="datoSeleccionado?.MarcaProce"><strong>Marca del Procesador:</strong> {{ datoSeleccionado?.MarcaProce }}</p>
+        <p *ngIf="datoSeleccionado?.ModelProce"><strong>Modelo del Procesador:</strong> {{ datoSeleccionado?.ModelProce }}</p>
+        <p *ngIf="datoSeleccionado?.LinProce"><strong>Línea del Procesador:</strong> {{ datoSeleccionado?.LinProce }}</p>
+  
+        <button (click)="cerrarModal()">Aceptar</button>
+      </div>
+    </div>
+  </div>
+
+  <!--
+<div class="container">
+  <h2>Lista de Servidores</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Número de Parte</th>
+        <th>Marca</th>
+        <th>Socket</th>
+        <th>RAM</th>
+        <th>Modelo</th>
+        <th>Tipo de Disco</th>
+        <th>Marca Procesador</th>
+        <th>Modelo Procesador</th>
+        <th>Línea Procesador</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+       Iterar sobre la lista de servidores 
+      <tr *NgFor="let servidor of servidores">
+        <td>{{ servidor.id }}</td>
+        <td>{{ servidor.nombre }}</td>
+        <td>{{ servidor.numParte }}</td>
+        <td>{{ servidor.marca }}</td>
+        <td>{{ servidor.socket }}</td>
+        <td>{{ servidor.ram }}</td>
+        <td>{{ servidor.modelo }}</td>
+        <td>{{ servidor.tDisco }}</td>
+        <td>{{ servidor.marcaProce }}</td>
+        <td>{{ servidor.modelProce }}</td>
+        <td>{{ servidor.linProce }}</td>
+        <td>{{ servidor.total }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+-->

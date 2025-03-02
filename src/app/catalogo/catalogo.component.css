@@ -1,0 +1,119 @@
+/*.header { 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;  Centra el contenido horizontalmente 
+    padding: 20px; 
+    background-color: white; /*rgba(255, 255, 255, 0.7)
+    border-radius: 0; /* Eliminamos el borde redondeado si no es necesario 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
+    box-sizing: border-box; 
+    text-align: center; 
+    gap: 20px; 
+    position: fixed; /* Fija el header en la parte superior 
+    top: 0; /* Asegura que quede en la parte superior 
+    left: 0;
+    width: 100%; /* Asegura que ocupe todo el ancho 
+    z-index: 1000; /* Mantiene el header por encima de otros elementos 
+}*/
+body{
+    justify-content: center;
+}
+h1{
+    margin-bottom: 30px; 
+    text-align: center;
+    color: #333;
+}
+p{
+    color: #fff;
+}
+
+.header img { 
+    height: 100px; 
+    width: auto; 
+    margin-right: 10px;
+}
+.header h1 { 
+    font-size: 24px; 
+    font-weight: bold; 
+    color: black;
+    text-align: center; 
+}
+ 
+.slider {
+    width: 100%; /* Ocupa todo el ancho disponible */
+     /*max-width: 1700px; Ancho máximo del slider */
+    height: 780px; /* Altura fija del slider */
+    margin: 0 auto; /* Centra horizontalmente */
+    overflow: hidden; /* Oculta contenido fuera del slider */
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    display: flex;
+    align-items: center; /* Centra verticalmente */
+    justify-content: center; /* Centra horizontalmente */
+    background: #fff;
+}
+
+.slides {
+    display: flex;
+    width: 1600px; /* Ancho ajustado del contenedor de slides */
+    height: 750px; /* Altura ajustada del contenedor de slides */
+    animation: slide-animation 20s infinite; /* Animación para las transiciones */
+    transition: transform 1s ease-in-out; /* Suaviza la animación */
+    position: relative; /* Asegura que las slides estén contenidas dentro */
+}
+
+.slide {
+    width: 1600px; /* Cada slide ocupa el ancho del contenedor slides */
+    height: 750px; /* Cada slide ocupa la altura del contenedor slides */
+    display: flex;
+    justify-content: center; /* Centra el contenido horizontalmente */
+    align-items: center; /* Centra el contenido verticalmente */
+    flex-shrink: 0; /* Evita que se reduzca */
+}
+
+.slide img {
+    width: 800%; /* La imagen ocupa el 100% del ancho de la slide */
+    height: 95%; /* La imagen ocupa el 100% de la altura de la slide */
+    object-fit: contain; /* Escala la imagen para llenar el contenedor, puede recortar */
+    border-radius: 10px; /* Borde redondeado */
+}
+
+
+@keyframes slide-animation {
+    0% { transform: translateX(0); }
+    12.5% { transform: translateX(-100%); }
+    25% { transform: translateX(-200%); }
+    37.5% { transform: translateX(-300%); }
+    50% { transform: translateX(-400%); }
+    62.5% { transform: translateX(-500%); }
+    75% { transform: translateX(-600%); }
+    87.5% { transform: translateX(-700%); }
+    100% { transform: translateX(0); }
+}
+.lista_contenedor {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    gap: 15px;
+}
+.lista {
+    background-color:rgb(8, 6, 117);
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: calc(20% - 20px);
+    box-sizing: border-box;
+    margin: 10px;
+}
+.lista img {
+    max-width: 90%;
+    height: auto;
+    border-radius: 10px;
+}
+button:hover:not(:disabled) {
+    background-color: #1cff3a;
+  }

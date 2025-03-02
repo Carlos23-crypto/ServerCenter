@@ -1,0 +1,207 @@
+/* Estilos generales */
+.embarque-container {
+    font-family: Arial, sans-serif;
+    padding-top: 80px; /* Espacio para el encabezado fijo */
+  }
+  
+  /* Encabezado */
+  .embarque-header {
+    position: fixed; /* Fija el encabezado en la parte superior */
+    top: 0;
+    left: 0;
+    width: 100%; /* Ocupa todo el ancho de la página */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2c3e50;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
+    z-index: 1000; /* Asegura que el encabezado esté por encima del contenido */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra para un efecto elevado */
+  }
+  .header-container {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espacio entre la imagen y el título */
+  }
+  
+  .header-container img {
+    width: 150px; /* Ajusta el tamaño de la imagen */
+    height: 150px;
+    border-radius: 50%;
+  }
+  
+  .header-container h1 {
+    margin: 0;
+    font-size: 24px;
+    color: #ccc;
+  }
+  
+  
+  .embarque-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .embarque-menu button {
+    margin-left: 10px;
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .embarque-menu button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Contenido principal */
+  .embarque-content {
+    margin-top: 20px;
+    padding: 20px; /* Espaciado interno para el contenido */
+  }
+  
+  .registrar-button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .registrar-button:hover {
+    background-color: #218838;
+  }
+  
+  /* Buscador */
+  .buscador {
+    margin: 20px 0;
+  }
+  
+  .buscador select,
+  .buscador input,
+  .buscador button {
+    padding: 8px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .buscador button {
+    background-color: #17a2b8;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .buscador button:hover {
+    background-color: #138496;
+  }
+  
+  /* Tabla de embarques */
+  .embarque-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .embarque-table th,
+  .embarque-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .embarque-table th {
+    background-color: #f2f2f2;
+  }
+  
+  /* Botón de exportar */
+  .exportar-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .exportar-button:hover {
+    background-color: #c82333;
+  }
+  
+  /* Modal */
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001; /* Asegura que el modal esté por encima del encabezado */
+  }
+  
+  .modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+  }
+  
+  .modal-content h2 {
+    margin-bottom: 20px;
+  }
+  
+  .modal-content label {
+    display: block;
+    margin-bottom: 8px;
+  }
+  
+  .modal-content input,
+  .modal-content select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .modal-content button {
+    margin-right: 10px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .modal-content button[type="submit"] {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .modal-content button[type="button"] {
+    background-color: #dc3545;
+    color: white;
+  }
+
+  .producto-menu button {
+    padding: 8px 16px;
+    background-color: #34495e;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.producto-menu button:hover {
+  background-color: #1a252f;
+}

@@ -1,0 +1,94 @@
+<!-- Encabezado -->
+<header class="producto-header">
+    <div class="header-container">
+        <img id="Logo" src="../../assets/imagenes/Fondos/ServerLogo.jfif" alt="Logo"/>
+        <h1 class="producto-title">Registro de Productos</h1>
+    </div>
+
+    <nav class="producto-menu">
+        <button (click)="regresar()">Regresar</button>
+    </nav>
+</header>
+
+<!-- Formulario de Registro de Productos -->
+<main class="form-container">
+    <form class="producto-form">
+        <div class="form-group">
+            <label for="tipo-producto">Tipo de Producto:</label>
+            <select id="tipo-producto" name="tipo-producto" (change)="actualizarCampos($event)">
+                <option value="">Seleccione un producto</option>
+                <option value="servidor">Servidor</option>
+                <option value="laptop">Laptop</option>
+                <option value="motherboard">Motherboard</option>
+                <option value="ram">Memoria RAM</option>
+                <option value="ventilador">Ventilador</option>
+                <option value="monitor">Monitor</option>
+                <option value="gabinete">Gabinete</option>
+                <option value="disco-duro">Disco Duro</option>
+                <option value="fuente">Fuente</option>
+            </select>
+        </div>
+
+        <div class="form-group" *ngIf="mostrarCampos.nombre">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+        </div>
+
+        <div class="form-group" *ngIf="mostrarCampos.num_parte">
+            <label for="num_parte">Número de Parte:</label>
+            <input type="text" id="num_parte" name="num_parte" required>
+        </div>
+
+        <div class="form-group" *ngIf="mostrarCampos.marca">
+            <label for="marca">Marca:</label>
+            <input type="text" id="marca" name="marca" required>
+        </div>
+
+        <div class="form-group" *ngIf="mostrarCampos.total">
+            <label for="total">Total:</label>
+            <input type="number" id="total" name="total" required>
+        </div>
+
+        <div class="form-group" *ngIf="mostrarCampos.modelo">
+            <label for="modelo">Modelo:</label>
+            <input type="text" id="modelo" name="modelo" required>
+        </div>
+
+        <div class="form-group" *ngIf="mostrarCampos.categoria">
+            <label for="categoria">Categoría:</label>
+            <input type="text" id="categoria" name="categoria" required>
+        </div>
+
+        <div class="form-group" *ngIf="mostrarCampos.lin_proce">
+            <label for="lin_proce">Línea de Procesador:</label>
+            <input type="text" id="lin_proce" name="lin_proce" required>
+        </div>
+
+        <div class="form-group" *ngIf="mostrarCampos.marca_proce">
+            <label for="marca_proce">Marca del Procesador:</label>
+            <input type="text" id="marca_proce" name="marca_proce" required>
+        </div>
+
+        <div class="form-group" *ngIf="mostrarCampos.model_proce">
+            <label for="model_proce">Modelo del Procesador:</label>
+            <input type="text" id="model_proce" name="model_proce" required>
+        </div>
+
+        <div class="form-group" *ngIf="mostrarCampos.ram">
+            <label for="ram">Memoria RAM:</label>
+            <input type="text" id="ram" name="ram" required>
+        </div>
+
+        <div class="form-group" *ngIf="mostrarCampos.socket">
+            <label for="socket">Socket:</label>
+            <input type="text" id="socket" name="socket" required>
+        </div>
+
+        <div class="form-group" *ngIf="mostrarCampos.t_disco">
+            <label for="t_disco">Tipo de Disco:</label>
+            <input type="text" id="t_disco" name="t_disco" required>
+        </div>
+
+        <button type="submit" class="submit-button">Registrar Producto</button>
+    </form>
+</main>

@@ -1,0 +1,54 @@
+<div class="slider">
+  <div class="slides">
+    <div class="slide"><img src="../../assets/imagenes/Productos/DiscoDuro.JPG" alt="Imagen 1" /></div>
+    <div class="slide"><img src="../../assets/imagenes/Productos/Fuente.JPG" alt="Imagen 2" /></div>
+    <div class="slide"><img src="../../assets/imagenes/Productos/Gabinete.JPG" alt="Imagen 3" /></div>
+    <div class="slide"><img src="../../assets/imagenes/Productos/Laptop.JPG" alt="Imagen 4" /></div>
+    <div class="slide"><img src="../../assets/imagenes/Productos/Monitor.JPG" alt="Imagen 5" /></div>
+    <div class="slide"><img src="../../assets/imagenes/Productos/Placa.JPG" alt="Imagen 6" /></div>
+    <div class="slide"><img src="../../assets/imagenes/Productos/Ram.JPG" alt="Imagen 7" /></div>
+    <div class="slide"><img src="../../assets/imagenes/Productos/Servidor.JPG" alt="Imagen 8" /></div>
+  </div>
+</div>
+
+<h1>Haz una consulta hacia nuestros Mejores Productos!!</h1>
+
+<div class="lista_contenedor">
+  <button *ngFor="let dato of datos; let indice=index" class="lista" (click)="redirect(dato.nombre)">
+    <img [src]="dato.imagen" alt="Imagen Producto" />
+    <p>{{ dato.nombre }}</p>
+  </button>
+  <!--
+  <button class="lista" routerLink="/login">
+    <img src="../../assets/imagenes/IconFuente.jpg" alt="Imagen Fuente" />
+    <p>Fuentes</p>
+  </button>
+  <button class="lista" routerLink="/login">
+    <img src="../../assets/imagenes/IconPlaca.jpg" alt="Imagen Placa" />
+    <p>Tarjetas Madre</p>
+  </button>
+  <button class="lista" routerLink="/login">
+    <img src="../../assets/imagenes/IconLaptop.jpg" alt="Imagen Laptop" />
+    <p>Laptops</p>
+  </button>
+  <button class="lista" routerLink="/login">
+    <img src="../../assets/imagenes/IconMonitor.jpg" alt="Imagen Monitor" />
+    <p>Monitores</p>
+  </button>
+  <button class="lista" routerLink="/login">
+    <img src="../../assets/imagenes/IconGabinete.jpg" alt="Imagen Gabinete" />
+    <p>Gabinetes</p>
+  </button>
+  <button class="lista" routerLink="/login">
+    <img src="../../assets/imagenes/IconRam.JPG" alt="Imagen RAM" />
+    <p>Memorias RAM</p>
+  </button>
+  <button class="lista" routerLink="/login">
+    <img src="../../assets/imagenes/IconDisco.JPG" alt="Imagen Disco" />
+    <p>Discos Duros</p>
+  </button>
+  <button class="lista" routerLink="/login">
+    <img src="../../assets/imagenes/IconVentilador.jpg" alt="Imagen Ventilador" />
+    <p>Ventiladores</p>
+  </button>-->
+</div>
