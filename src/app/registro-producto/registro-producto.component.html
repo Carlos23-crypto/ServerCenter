@@ -12,10 +12,10 @@
 
 <!-- Formulario de Registro de Productos -->
 <main class="form-container">
-    <form class="producto-form">
+    <form class="producto-form" (ngSubmit)="registrarProducto()">
         <div class="form-group">
             <label for="tipo-producto">Tipo de Producto:</label>
-            <select id="tipo-producto" name="tipo-producto" (change)="actualizarCampos($event)">
+            <select id="tipo-producto" name="tipo-producto" (change)="actualizarCampos($event)" required>
                 <option value="">Seleccione un producto</option>
                 <option value="servidor">Servidor</option>
                 <option value="laptop">Laptop</option>
@@ -31,62 +31,62 @@
 
         <div class="form-group" *ngIf="mostrarCampos.nombre">
             <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" required>
+            <input type="text" id="nombre" name="nombre" [(ngModel)]="producto.nombre" required>
         </div>
 
         <div class="form-group" *ngIf="mostrarCampos.num_parte">
             <label for="num_parte">Número de Parte:</label>
-            <input type="text" id="num_parte" name="num_parte" required>
+            <input type="text" id="num_parte" name="num_parte" [(ngModel)]="producto.numParte" required>
         </div>
 
         <div class="form-group" *ngIf="mostrarCampos.marca">
             <label for="marca">Marca:</label>
-            <input type="text" id="marca" name="marca" required>
+            <input type="text" id="marca" name="marca" [(ngModel)]="producto.marca" required>
         </div>
 
         <div class="form-group" *ngIf="mostrarCampos.total">
             <label for="total">Total:</label>
-            <input type="number" id="total" name="total" required>
+            <input type="number" id="total" name="total" [(ngModel)]="producto.total" required>
         </div>
 
         <div class="form-group" *ngIf="mostrarCampos.modelo">
             <label for="modelo">Modelo:</label>
-            <input type="text" id="modelo" name="modelo" required>
+            <input type="text" id="modelo" name="modelo" [(ngModel)]="producto.modelo" required>
         </div>
 
         <div class="form-group" *ngIf="mostrarCampos.categoria">
             <label for="categoria">Categoría:</label>
-            <input type="text" id="categoria" name="categoria" required>
+            <input type="text" id="categoria" name="categoria" [(ngModel)]="producto.categoria" required>
         </div>
 
         <div class="form-group" *ngIf="mostrarCampos.lin_proce">
             <label for="lin_proce">Línea de Procesador:</label>
-            <input type="text" id="lin_proce" name="lin_proce" required>
+            <input type="text" id="lin_proce" name="lin_proce" [(ngModel)]="producto.linProce" required>
         </div>
 
         <div class="form-group" *ngIf="mostrarCampos.marca_proce">
             <label for="marca_proce">Marca del Procesador:</label>
-            <input type="text" id="marca_proce" name="marca_proce" required>
+            <input type="text" id="marca_proce" name="marca_proce" [(ngModel)]="producto.marcaProce" required>
         </div>
 
         <div class="form-group" *ngIf="mostrarCampos.model_proce">
             <label for="model_proce">Modelo del Procesador:</label>
-            <input type="text" id="model_proce" name="model_proce" required>
+            <input type="text" id="model_proce" name="model_proce" [(ngModel)]="producto.modelProce" required>
         </div>
 
         <div class="form-group" *ngIf="mostrarCampos.ram">
             <label for="ram">Memoria RAM:</label>
-            <input type="text" id="ram" name="ram" required>
+            <input type="text" id="ram" name="ram" [(ngModel)]="producto.ram" required>
         </div>
 
         <div class="form-group" *ngIf="mostrarCampos.socket">
             <label for="socket">Socket:</label>
-            <input type="text" id="socket" name="socket" required>
+            <input type="text" id="socket" name="socket" [(ngModel)]="producto.socket" required>
         </div>
 
         <div class="form-group" *ngIf="mostrarCampos.t_disco">
             <label for="t_disco">Tipo de Disco:</label>
-            <input type="text" id="t_disco" name="t_disco" required>
+            <input type="text" id="t_disco" name="t_disco" [(ngModel)]="producto.tDisco" required>
         </div>
 
         <button type="submit" class="submit-button">Registrar Producto</button>

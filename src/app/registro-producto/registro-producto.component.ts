@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ServidorService } from '../services/servidor.service';
+import { Servidor } from '../models/servidor.model';
 
 @Component({
   selector: 'app-registro-producto',
@@ -10,18 +12,50 @@ import { FormsModule } from '@angular/forms';
 })
 export class RegistroProductoComponent {
   mostrarCampos: any = {};
+  tipoProducto: string = ''; // Almacena el tipo de producto seleccionado
 
+  // Objeto para almacenar los valores del formulario
+  producto: Servidor = {
+    id: 0,
+    nombre: '',
+    numParte: '',
+    marca: '',
+    socket: 'N/A',
+    ram: 'N/A',
+    modelo: '',
+    tDisco: 'N/A',
+    marcaProce: 'N/A',
+    modelProce: 'N/A',
+    linProce: 'N/A',
+    categoria: '',
+    total: 0
+  };
+
+  constructor(private servidorService: ServidorService) { }
+
+  // Actualizar campos visibles según el tipo de producto seleccionado
   actualizarCampos(event: any) {
-    const tipoProducto = event.target.value;
-    
-    // Resetear todos los campos
-    this.mostrarCampos = {
-      nombre: false, num_parte: false, marca: false, total: false, modelo: false,
-      categoria: false, lin_proce: false, marca_proce: false, model_proce: false,
-      ram: false, socket: false, t_disco: false
+    this.tipoProducto = event.target.value;
+
+    // Resetear todos los campos a "N/A"
+    this.producto = {
+      id: 0,
+      nombre: '',
+      numParte: '',
+      marca: '',
+      socket: 'N/A',
+      ram: 'N/A',
+      modelo: '',
+      tDisco: 'N/A',
+      marcaProce: 'N/A',
+      modelProce: 'N/A',
+      linProce: 'N/A',
+      categoria: this.tipoProducto === 'ram' ? 'Ram' : this.tipoProducto,
+      total: 0
     };
 
-    switch (tipoProducto) {
+    // Mostrar u ocultar campos según el tipo de producto
+    switch (this.tipoProducto) {
       case 'servidor':
       case 'laptop':
         this.mostrarCampos = { nombre: true, num_parte: true, marca: true, total: true, modelo: true,
@@ -53,6 +87,26 @@ export class RegistroProductoComponent {
     }
   }
 
+  // Registrar el producto
+  registrarProducto() {
+    // Asignar la categoría correcta
+    this.producto.categoria = this.tipoProducto === 'ram' ? 'Ram' : this.tipoProducto;
+
+    // Enviar el producto al backend
+    this.servidorService.crearServidor(this.producto).subscribe(
+      response => {
+        console.log('Producto registrado:', response);
+        alert('Producto registrado exitosamente');
+        this.regresar(); // Redirigir después del registro
+      },
+      error => {
+        console.error('Error al registrar el producto:', error);
+        alert('Error al registrar el producto');
+      }
+    );
+  }
+
+  // Redirigir a la página de almacén
   regresar() {
     window.location.href = '/almacen'; 
   }
