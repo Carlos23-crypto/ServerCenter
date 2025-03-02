@@ -84,7 +84,7 @@ export class ServidoresComponent implements OnInit {
     Fuentes: [
       {
         nombre: 'Corsair RM850x',
-        n_parte: 'CP-9020188-NA',
+        n_parte: 'CP-9020188-SP',
         marca: 'Corsair',
         total: 10,
         imagen: fuente,

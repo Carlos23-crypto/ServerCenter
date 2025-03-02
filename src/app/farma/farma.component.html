@@ -1,98 +1,57 @@
 <div class="container">
-  <h2>Lista de Servidores</h2>
+  <h2>Seleccione una categoría</h2>
 
-  <!-- Formulario para agregar un nuevo servidor -->
-  <div class="mb-3">
-    <h3>Agregar Nuevo Servidor</h3>
-    <form (ngSubmit)="guardarServidor()">
-      <div class="form-group">
-        <label for="nombre">Nombre:</label>
-        <input type="text" class="form-control" id="nombre" [(ngModel)]="nuevoServidor.nombre" name="nombre" required>
-      </div>
-      <div class="form-group">
-        <label for="numParte">Número de Parte:</label>
-        <input type="text" class="form-control" id="numParte" [(ngModel)]="nuevoServidor.numParte" name="numParte" required>
-      </div>
-      <div class="form-group">
-        <label for="marca">Marca:</label>
-        <input type="text" class="form-control" id="marca" [(ngModel)]="nuevoServidor.marca" name="marca" required>
-      </div>
-      <div class="form-group">
-        <label for="socket">Socket:</label>
-        <input type="text" class="form-control" id="socket" [(ngModel)]="nuevoServidor.socket" name="socket" required>
-      </div>
-      <div class="form-group">
-        <label for="ram">RAM:</label>
-        <input type="text" class="form-control" id="ram" [(ngModel)]="nuevoServidor.ram" name="ram" required>
-      </div>
-      <div class="form-group">
-        <label for="modelo">Modelo:</label>
-        <input type="text" class="form-control" id="modelo" [(ngModel)]="nuevoServidor.modelo" name="modelo" required>
-      </div>
-      <div class="form-group">
-        <label for="tDisco">Tipo de Disco:</label>
-        <input type="text" class="form-control" id="tDisco" [(ngModel)]="nuevoServidor.tDisco" name="tDisco" required>
-      </div>
-      <div class="form-group">
-        <label for="marcaProce">Marca Procesador:</label>
-        <input type="text" class="form-control" id="marcaProce" [(ngModel)]="nuevoServidor.marcaProce" name="marcaProce" required>
-      </div>
-      <div class="form-group">
-        <label for="modelProce">Modelo Procesador:</label>
-        <input type="text" class="form-control" id="modelProce" [(ngModel)]="nuevoServidor.modelProce" name="modelProce" required>
-      </div>
-      <div class="form-group">
-        <label for="linProce">Línea Procesador:</label>
-        <input type="text" class="form-control" id="linProce" [(ngModel)]="nuevoServidor.linProce" name="linProce" required>
-      </div>
-      <div class="form-group">
-        <label for="categoria">Categoría:</label>
-        <input type="text" class="form-control" id="categoria" [(ngModel)]="nuevoServidor.categoria" name="categoria" required>
-      </div>
-      <div class="form-group">
-        <label for="total">Total:</label>
-        <input type="number" class="form-control" id="total" [(ngModel)]="nuevoServidor.total" name="total" required>
-      </div>
-      <button type="submit" class="btn btn-primary">Guardar</button>
-    </form>
+  <!-- Lista de categorías -->
+  <div class="list-group">
+    <button
+      *ngFor="let categoria of categorias"
+      class="list-group-item list-group-item-action"
+      (click)="seleccionarCategoria(categoria)"
+    >
+      {{ categoria }}
+    </button>
   </div>
 
   <!-- Tabla para mostrar la lista de servidores -->
-  <table class="table">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Número de Parte</th>
-        <th>Marca</th>
-        <th>Socket</th>
-        <th>RAM</th>
-        <th>Modelo</th>
-        <th>Tipo de Disco</th>
-        <th>Marca Procesador</th>
-        <th>Modelo Procesador</th>
-        <th>Línea Procesador</th>
-        <th>Categoria</th>
-        <th>Total</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- Iterar sobre la lista de servidores -->
-      <tr *ngFor="let servidor of servidores">
-        <td>{{ servidor.id }}</td>
-        <td>{{ servidor.nombre }}</td>
-        <td>{{ servidor.numParte }}</td>
-        <td>{{ servidor.marca }}</td>
-        <td>{{ servidor.socket }}</td>
-        <td>{{ servidor.ram }}</td>
-        <td>{{ servidor.modelo }}</td>
-        <td>{{ servidor.tDisco }}</td>
-        <td>{{ servidor.marcaProce }}</td>
-        <td>{{ servidor.modelProce }}</td>
-        <td>{{ servidor.linProce }}</td>
-        <td>{{ servidor.categoria }}</td>
-        <td>{{ servidor.total }}</td>
-      </tr>
-    </tbody>
-  </table>
+  <div *ngIf="categoriaSeleccionada">
+    <h3>Lista de {{ categoriaSeleccionada }}</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <!-- Mostrar solo las columnas que no tienen "N/A" -->
+          <th *ngIf="mostrarColumna('id')">ID</th>
+          <th *ngIf="mostrarColumna('nombre')">Nombre</th>
+          <th *ngIf="mostrarColumna('numParte')">Número de Parte</th>
+          <th *ngIf="mostrarColumna('marca')">Marca</th>
+          <th *ngIf="mostrarColumna('socket')">Socket</th>
+          <th *ngIf="mostrarColumna('ram')">RAM</th>
+          <th *ngIf="mostrarColumna('modelo')">Modelo</th>
+          <th *ngIf="mostrarColumna('tDisco')">Tipo de Disco</th>
+          <th *ngIf="mostrarColumna('marcaProce')">Marca Procesador</th>
+          <th *ngIf="mostrarColumna('modelProce')">Modelo Procesador</th>
+          <th *ngIf="mostrarColumna('linProce')">Línea Procesador</th>
+          <th *ngIf="mostrarColumna('categoria')">Categoría</th>
+          <th *ngIf="mostrarColumna('total')">Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Iterar sobre la lista de servidores -->
+        <tr *ngFor="let servidor of servidores">
+          <td *ngIf="mostrarColumna('id')">{{ servidor.id }}</td>
+          <td *ngIf="mostrarColumna('nombre')">{{ servidor.nombre }}</td>
+          <td *ngIf="mostrarColumna('numParte')">{{ servidor.numParte }}</td>
+          <td *ngIf="mostrarColumna('marca')">{{ servidor.marca }}</td>
+          <td *ngIf="mostrarColumna('socket')">{{ servidor.socket }}</td>
+          <td *ngIf="mostrarColumna('ram')">{{ servidor.ram }}</td>
+          <td *ngIf="mostrarColumna('modelo')">{{ servidor.modelo }}</td>
+          <td *ngIf="mostrarColumna('tDisco')">{{ servidor.tDisco }}</td>
+          <td *ngIf="mostrarColumna('marcaProce')">{{ servidor.marcaProce }}</td>
+          <td *ngIf="mostrarColumna('modelProce')">{{ servidor.modelProce }}</td>
+          <td *ngIf="mostrarColumna('linProce')">{{ servidor.linProce }}</td>
+          <td *ngIf="mostrarColumna('categoria')">{{ servidor.categoria }}</td>
+          <td *ngIf="mostrarColumna('total')">{{ servidor.total }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

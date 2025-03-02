@@ -1,50 +1,63 @@
 import { Component, OnInit } from '@angular/core';
 import { ServidorService } from '../services/servidor.service';
-import { Servidor } from '../models/servidor.model'; // Importa el modelo
+import { Servidor } from '../models/servidor.model';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms'; // Importa FormsModule para el formulario
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-servidor-list',
-  imports: [CommonModule, FormsModule], // Agrega FormsModule aquí
+  imports: [CommonModule, FormsModule],
   templateUrl: './farma.component.html',
   styleUrls: ['./farma.component.css']
 })
 export class FarmaComponent implements OnInit {
   servidores: Servidor[] = []; // Lista de servidores
-  nuevoServidor: Servidor = new Servidor(); // Objeto para el nuevo servidor
+  categorias: string[] = []; // Lista de categorías disponibles
+  categoriaSeleccionada: string = ''; // Categoría seleccionada
+  columnasMostradas: string[] = []; // Columnas que se mostrarán en la tabla
 
   constructor(private servidorService: ServidorService) { }
 
   ngOnInit(): void {
-    this.cargarServidores();
+    this.cargarCategorias(); // Cargar las categorías disponibles
   }
 
-  // Cargar la lista de servidores
-  cargarServidores(): void {
-    this.servidorService.obtenerTodos().subscribe(data => {
+  // Cargar las categorías disponibles
+  cargarCategorias(): void {
+    this.servidorService.obtenerCategorias().subscribe(data => {
+      this.categorias = data;
+    });
+  }
+
+  // Manejar la selección de categoría
+  seleccionarCategoria(categoria: string): void {
+    this.categoriaSeleccionada = categoria;
+    this.cargarServidoresPorCategoria(categoria);
+  }
+
+  // Cargar servidores por categoría
+  cargarServidoresPorCategoria(categoria: string): void {
+    this.servidorService.obtenerPorCategoria(categoria).subscribe(data => {
       this.servidores = data;
+      this.definirColumnasMostradas(); // Define las columnas a mostrar
     });
   }
 
-  // Guardar un nuevo servidor
-  guardarServidor(): void {
-    this.servidorService.crearServidor(this.nuevoServidor).subscribe(
-      (response) => {
-        console.log('Servidor guardado:', response);
-        this.cargarServidores(); // Recargar la lista después de guardar
-        this.nuevoServidor = new Servidor(); // Limpiar el formulario
-      },
-      (error) => {
-        console.error('Error al guardar el servidor:', error);
-      }
-    );
+  // Definir las columnas que se mostrarán en la tabla
+  definirColumnasMostradas(): void {
+    if (this.servidores.length > 0) {
+      // Obtener todas las claves (columnas) del primer servidor
+      const todasLasColumnas = Object.keys(this.servidores[0]);
+
+      // Filtrar las columnas que no tienen "N/A" en todos los servidores
+      this.columnasMostradas = todasLasColumnas.filter(columna => 
+        !this.servidores.every(servidor => (servidor as any)[columna] === 'N/A')
+      );
+    }
   }
 
-  // Eliminar un servidor
-  eliminarServidor(id: number): void {
-    this.servidorService.eliminarServidor(id).subscribe(() => {
-      this.cargarServidores(); // Recargar la lista después de eliminar
-    });
+  // Verificar si una columna debe mostrarse
+  mostrarColumna(columna: string): boolean {
+    return this.columnasMostradas.includes(columna);
   }
 }

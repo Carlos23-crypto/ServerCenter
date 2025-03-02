@@ -19,6 +19,14 @@ export class ServidorService {
     return this.http.get<Servidor>(`${this.apiUrl}/list/${id}`);
   }
 
+  obtenerPorCategoria(categoria: string): Observable<Servidor[]> {
+    return this.http.get<Servidor[]>(`${this.apiUrl}/list/categoria/${categoria}`);
+  }
+
+  obtenerCategorias(): Observable<string[]> {
+    return this.http.get<string[]>(`${this.apiUrl}/categorias`);
+  }
+
   crearServidor(servidor: Servidor): Observable<Servidor> {
     return this.http.post<Servidor>(`${this.apiUrl}/save`, servidor);
   }
