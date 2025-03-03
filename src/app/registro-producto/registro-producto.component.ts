@@ -75,10 +75,10 @@ export class RegistroProductoComponent {
       case 'monitor':
         this.mostrarCampos = { nombre: true, num_parte: true, marca: true, total: true, modelo: true };
         break;
-      case 'gabinete':
+      case 'abinete':
         this.mostrarCampos = { nombre: true, num_parte: true, marca: true, total: true, modelo: true, socket: true };
         break;
-      case 'disco-duro':
+      case 'Disco':
         this.mostrarCampos = { nombre: true, num_parte: true, marca: true, total: true, modelo: true };
         break;
       case 'fuente':
