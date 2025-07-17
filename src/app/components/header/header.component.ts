@@ -2,6 +2,9 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
+// Exportar el tipo para reutilización
+export type HeaderVariant = 'default' | 'transparent' | 'dark';
+
 @Component({
   selector: 'app-header',
   standalone: true,
