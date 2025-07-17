@@ -1,0 +1,46 @@
+<header [class.transparent]="variant === 'transparent'" 
+    [class.dark]="variant === 'dark'"
+    [class.mobile-menu-open]="isMobileMenuOpen"
+    [class.show-on-mobile]="showOnMobile">
+    <div class="header-container">
+      <!-- Logo -->
+      <a routerLink="/" class="logo">
+        <span class="logo-part1">Server</span>
+        <span class="logo-part2">center.mx</span>
+      </a>
+  
+      <!-- Menú para desktop -->
+      <nav class="desktop-nav">
+        <ul>
+          <!-- <li><a routerLink="/inicio" routerLinkActive="active">Inicio</a></li> -->
+          <!-- <li><a routerLink="/servicios" routerLinkActive="active">Servicios</a></li> -->
+          <!-- <li><a routerLink="/contacto" routerLinkActive="active">Contacto</a></li> -->
+          <li *ngIf="showLogin">
+            <a routerLink="/login" routerLinkActive="active" class="login-btn">
+              Inicio de Sesión
+            </a>
+          </li>
+        </ul>
+      </nav>
+  
+      <!-- Menú móvil -->
+      <button class="mobile-menu-button" (click)="toggleMobileMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+  
+      <nav class="mobile-nav" [class.open]="isMobileMenuOpen">
+        <ul>
+          <!-- <li><a routerLink="/inicio" routerLinkActive="active" (click)="closeMobileMenu()">Inicio</a></li> -->
+          <!-- <li><a routerLink="/servicios" routerLinkActive="active" (click)="closeMobileMenu()">Servicios</a></li> -->
+          <!-- <li><a routerLink="/contacto" routerLinkActive="active" (click)="closeMobileMenu()">Contacto</a></li> -->
+          <li *ngIf="showLogin">
+            <a routerLink="/login" routerLinkActive="active" (click)="closeMobileMenu()" class="login-btn">
+              Inicio de Sesión
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>

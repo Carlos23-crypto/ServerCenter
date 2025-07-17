@@ -16,6 +16,7 @@ import { AdministradorComponent } from './administrador/administrador.component'
 import { AuthGuard } from './guards/auth.guard';
 import { RegistroProductoComponent } from './registro-producto/registro-producto.component';
 import { CatalogoAlmacenComponent } from './catalogo-almacen/catalogo-almacen.component';
+import { PrincipalComponent } from './principal/principal.component';
 
 export const routes: Routes = [
     {path: 'app', component: AppComponent},
@@ -32,7 +33,8 @@ export const routes: Routes = [
     {path: 'embarque', component: EmbarqueComponent},
     {path: 'ventas', component: VentasComponent },
     {path: 'farma', component: FarmaComponent},
+    {path: 'principal', component: PrincipalComponent},
     {path: 'sistemas', component: SistemasComponent, canActivate: [AuthGuard] },
     {path: 'administrador', component: AdministradorComponent, canActivate: [AuthGuard]},
-    {path: '**', redirectTo: 'login', pathMatch: 'full' },
+    {path: '**', redirectTo: 'principal', pathMatch: 'full' },
 ];

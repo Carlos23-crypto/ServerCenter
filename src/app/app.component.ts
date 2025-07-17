@@ -11,6 +11,9 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
+  title(title: any) {
+    throw new Error('Method not implemented.');
+  }
   showHeader: boolean = true; // Variable para controlar la visibilidad del header
 
   constructor(private router: Router) {
