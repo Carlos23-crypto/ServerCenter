@@ -168,3 +168,77 @@
     font-size: 0.9rem;
   }
 }
+/* Estilos para el acceso secreto */
+.secret-access-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.secret-access-box {
+  background: #1a1a52;
+  padding: 30px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 350px;
+  text-align: center;
+  color: white;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.secret-access-box h3 {
+  color: #a3cd63;
+  margin-top: 0;
+}
+
+.secret-access-box input {
+  width: 100%;
+  padding: 12px;
+  margin: 20px 0;
+  border: 2px solid #a3cd63;
+  border-radius: 5px;
+  font-size: 16px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.secret-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.secret-buttons button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s;
+}
+
+.secret-buttons button:first-child {
+  background: #a3cd63;
+  color: #1a1a52;
+}
+
+.secret-buttons button:first-child:hover {
+  background: #8cb84d;
+}
+
+.secret-buttons button:last-child {
+  background: #555588;
+  color: white;
+}
+
+.secret-buttons button:last-child:hover {
+  background: #6a6a9a;
+}

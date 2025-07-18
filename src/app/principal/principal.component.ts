@@ -6,14 +6,17 @@ import {
   PLATFORM_ID,
   ViewChild,
   ElementRef,
-  Renderer2
+  Renderer2,
+  HostListener
 } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-principal',
   standalone: true,
-  imports: [],
+  imports: [FormsModule, CommonModule],
   templateUrl: './principal.component.html',
   styleUrls: ['./principal.component.css']
 })
@@ -28,16 +31,50 @@ export class PrincipalComponent implements AfterViewInit, OnDestroy {
   private isBrowser: boolean;
   private animationFrameId: number | null = null;
 
+  // Variables para el acceso secreto
+  showPinForm = false;
+  pinInput = '';
+  private keySequence = '';
+  private readonly secretCombo = 'scmx'; // Combinación secreta: escribe "scmx"
+  private readonly correctPin = '9587'; // PIN secreto
+
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private router: Router
   ) {
     this.isBrowser = isPlatformBrowser(this.platformId);
   }
 
+  // Sistema de combinación de teclas
+  @HostListener('document:keydown', ['$event'])
+  handleKeyPress(event: KeyboardEvent) {
+    if (!this.isBrowser) return;
+    
+    this.keySequence += event.key.toLowerCase();
+    
+    if (this.keySequence.includes(this.secretCombo)) {
+      this.showPinForm = true;
+      this.keySequence = '';
+    }
+    
+    setTimeout(() => this.keySequence = '', 3000);
+  }
+
+  // Verificación del PIN
+  checkPin() {
+    if (this.pinInput === this.correctPin) {
+      this.router.navigate(['/login']); // Redirige al login
+    } else {
+      alert('PIN incorrecto');
+      this.pinInput = '';
+      this.showPinForm = false;
+    }
+  }
+
+  // Métodos existentes (se mantienen igual)
   ngAfterViewInit() {
     if (this.isBrowser) {
-      // Pequeño delay para asegurar que el viewport está estable
       this.animationTimeouts.push(setTimeout(() => {
         this.iniciarLoop();
       }, 50));
@@ -45,7 +82,6 @@ export class PrincipalComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    // Limpieza de recursos
     this.animationTimeouts.forEach(timeout => clearTimeout(timeout));
     this.animationTimeouts = [];
     
@@ -59,14 +95,12 @@ export class PrincipalComponent implements AfterViewInit, OnDestroy {
 
     this.logoText.nativeElement.innerHTML = '';
 
-    // Crear letras con estilos optimizados
     for (let i = 0; i < this.texto.length; i++) {
       const span = this.renderer.createElement('span');
       this.renderer.addClass(span, 'letter');
       this.renderer.setProperty(span, 'textContent', this.texto[i]);
       this.renderer.setStyle(span, '--delay', `${i * this.delayStep}s`);
       
-      // Estilos específicos para el punto
       if (i === this.texto.length - 1) {
         this.renderer.addClass(span, 'last-letter');
       }
@@ -74,7 +108,6 @@ export class PrincipalComponent implements AfterViewInit, OnDestroy {
       this.renderer.appendChild(this.logoText.nativeElement, span);
     }
 
-    // Forzar reflow para activar animaciones
     this.animationFrameId = requestAnimationFrame(() => {
       this.logoText.nativeElement.style.opacity = '1';
     });
@@ -84,14 +117,11 @@ export class PrincipalComponent implements AfterViewInit, OnDestroy {
     if (!this.isBrowser) return;
 
     this.crearLetras();
-
-    // Configuración inicial para elementos
     this.renderer.setStyle(this.subtitle.nativeElement, 'display', 'block');
     this.renderer.setStyle(this.subtitle.nativeElement, 'opacity', '0');
     this.renderer.setStyle(this.button.nativeElement, 'display', 'block');
     this.renderer.setStyle(this.button.nativeElement, 'opacity', '0');
 
-    // Animación escalonada
     const totalLettersDelay = this.texto.length * this.delayStep * 1000;
     
     this.animationTimeouts.push(setTimeout(() => {

@@ -5,3 +5,24 @@
   <div class="subtitle" #subtitle style="display: none;">Soluciones tecnológicas de alto nivel</div>
   <button class="button" #button style="display: none;" (click)="ir()">Conócenos</button>
 </div>
+
+<!-- Formulario de acceso secreto -->
+<div *ngIf="showPinForm" class="secret-access-overlay">
+  <div class="secret-access-box">
+    <h3>Acceso Administrativo</h3>
+    <p>Ingrese el PIN de acceso:</p>
+    
+    <input 
+      type="password" 
+      [(ngModel)]="pinInput" 
+      placeholder="Ingrese 9587"
+      maxlength="4"
+      (keyup.enter)="checkPin()"
+    >
+    
+    <div class="secret-buttons">
+      <button (click)="checkPin()">Verificar</button>
+      <button (click)="showPinForm = false">Cancelar</button>
+    </div>
+  </div>
+</div>
