@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import {CommonModule} from '@angular/common';
+import { HeaderComponent } from '../components/header/header.component';
+
+export type HeaderVariant = 'default' | 'transparent' | 'dark';
 
 const icon1 = 'assets/imagenes/Iconos/IconServer.jpg';
 const icon2 = 'assets/imagenes/Iconos/IconFuente.jpg';
@@ -14,7 +17,7 @@ const icon9 = 'assets/imagenes/Iconos/IconVentilador.jpg';
 
 @Component({
   selector: 'app-catalogo',
-  imports: [CommonModule],
+  imports: [HeaderComponent, CommonModule],
   templateUrl: './catalogo.component.html',
   styleUrl: './catalogo.component.css'
 })
@@ -22,6 +25,13 @@ export class CatalogoComponent {
   /*redirect(path: string): void {
     window.location.href = path;
   }*/
+  // Configuración específica para el header en la página de contacto
+  headerConfig = {
+    variant: 'default' as HeaderVariant, // Forzamos el tipo
+    showLogin: true,
+    showOnMobile: true
+  };
+
   constructor(private router: Router) {}
   datos: any[] = [
     {
