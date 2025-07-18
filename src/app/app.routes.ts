@@ -20,7 +20,7 @@ import { PrincipalComponent } from './principal/principal.component';
 
 export const routes: Routes = [
     {path: 'app', component: AppComponent},
-    {path: 'login', component: LoginComponent},
+    {path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
     {path: 'inicio', component: InicioComponent},
     {path: 'acerca', component: AcercaComponent},
     {path: 'servicios', component: ServiciosComponent},
