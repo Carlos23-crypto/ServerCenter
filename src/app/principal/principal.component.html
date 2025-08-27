@@ -10,19 +10,25 @@
 <div *ngIf="showPinForm" class="secret-access-overlay">
   <div class="secret-access-box">
     <h3>Acceso Administrativo</h3>
-    <p>Ingrese el PIN de acceso:</p>
+    <p>Ingrese el código de acceso:</p>
     
     <input 
-      type="password" 
-      [(ngModel)]="pinInput" 
-      placeholder="Ingrese 9587"
-      maxlength="4"
-      (keyup.enter)="checkPin()"
+      type="text"  
+      [(ngModel)]="codigoInput" 
+      placeholder="Ingrese el código"
+      (keyup.enter)="checkCodigo()"
     >
     
     <div class="secret-buttons">
-      <button (click)="checkPin()">Verificar</button>
-      <button (click)="showPinForm = false">Cancelar</button>
+      <button (click)="checkCodigo()" [disabled]="verificandoCodigo || codigoInput.length === 0">
+        <span *ngIf="!verificandoCodigo">Verificar</span>
+        <span *ngIf="verificandoCodigo">Verificando...</span>
+      </button>
+      <button (click)="showPinForm = false" [disabled]="verificandoCodigo">Cancelar</button>
+    </div>
+
+    <div *ngIf="verificandoCodigo" class="loading-indicator">
+      Verificando código...
     </div>
   </div>
 </div>

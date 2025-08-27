@@ -12,11 +12,13 @@ import {
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { CodigoService } from '../services/codigo.service';
 
 @Component({
   selector: 'app-principal',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, HttpClientModule],
   templateUrl: './principal.component.html',
   styleUrls: ['./principal.component.css']
 })
@@ -33,15 +35,16 @@ export class PrincipalComponent implements AfterViewInit, OnDestroy {
 
   // Variables para el acceso secreto
   showPinForm = false;
-  pinInput = '';
+  codigoInput = ''; // Cambiado de pinInput a codigoInput
   private keySequence = '';
   private readonly secretCombo = 'scmx'; // Combinación secreta: escribe "scmx"
-  private readonly correctPin = '9587'; // PIN secreto
+  verificandoCodigo = false; // Para controlar estado de carga
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     private renderer: Renderer2,
-    private router: Router
+    private router: Router,
+    private codigoService: CodigoService
   ) {
     this.isBrowser = isPlatformBrowser(this.platformId);
   }
@@ -61,15 +64,42 @@ export class PrincipalComponent implements AfterViewInit, OnDestroy {
     setTimeout(() => this.keySequence = '', 3000);
   }
 
-  // Verificación del PIN
-  checkPin() {
-    if (this.pinInput === this.correctPin) {
-      this.router.navigate(['/login']); // Redirige al login
-    } else {
-      alert('PIN incorrecto');
-      this.pinInput = '';
-      this.showPinForm = false;
+  // Verificación del CÓDIGO (no PIN)
+  checkCodigo() {
+    if (this.codigoInput.length === 0) {
+      alert('Por favor ingrese un código');
+      return;
     }
+
+    if (this.verificandoCodigo) return;
+
+    this.verificandoCodigo = true;
+
+    this.codigoService.verificarCodigo(this.codigoInput).subscribe({
+      next: (esValido: boolean) => {
+        this.verificandoCodigo = false;
+        if (esValido) {
+          this.router.navigate(['/login']); // Redirige al login
+        } else {
+          alert('Código incorrecto');
+          this.codigoInput = '';
+          this.showPinForm = false;
+        }
+      },
+      error: (error) => {
+        this.verificandoCodigo = false;
+        console.error('Error al verificar el código:', error);
+        
+        if (error.status === 401) {
+          alert('Código incorrecto');
+        } else {
+          alert('Error del servidor. Intente nuevamente.');
+        }
+        
+        this.codigoInput = '';
+        this.showPinForm = false;
+      }
+    });
   }
 
   // Métodos existentes (se mantienen igual)
