@@ -8,7 +8,7 @@ import { isPlatformBrowser } from '@angular/common';
   providedIn: 'root'
 })
 export class UsuarioService {
-  public apiUrl = 'http://localhost:8081/usuarios'; // Ruta base para usuarios
+  public apiUrl = 'http://localhost:8082/usuario/usuarios'; // Ruta base para usuarios
 
   constructor(
     private http: HttpClient,
